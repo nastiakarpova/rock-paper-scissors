@@ -34,3 +34,20 @@ function playRound(playerSelection, computerSelection) {
 
 console.log(computerSelection);
 console.log(playRound(playerSelection, computerSelection));
+
+console.log(example(playerSelection, computerSelection));
+
+
+
+function playRoundAlternative(playerSelection, computerSelection) {
+
+    const youWin = `You win! ${playerSelection} beats ${computerSelection}.`;
+    const youLose = `You lose! ${computerSelection} beats ${playerSelection}.`;
+    const itIsTie = `Its a tie! Try again.`;
+
+    return (playerSelection === computerSelection) ? itIsTie
+        : (playerSelection === "paper" && computerSelection === "rock") ? youWin
+        : (playerSelection === "rock" && computerSelection === "scissors") ? youWin
+        : (playerSelection === "scissors" && computerSelection === "paper") ? youWin
+        : youLose;
+}
