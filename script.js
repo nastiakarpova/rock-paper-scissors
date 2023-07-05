@@ -35,7 +35,7 @@ function playRound(playerSelection, computerSelection) {
 console.log(computerSelection);
 console.log(playRound(playerSelection, computerSelection));
 
-console.log(example(playerSelection, computerSelection));
+console.log(playRoundAlternative(playerSelection, computerSelection));
 
 
 
