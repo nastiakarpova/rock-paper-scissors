@@ -1,11 +1,6 @@
 console.log("Hello there! Welcome to a little game..");
 
-let playerSelection = "scISsors";
-let computerSelection = getComputerChoice();
-
-const youWin = `You win! ${playerSelection} beats ${computerSelection}.`;
-const youLose = `You lose! ${computerSelection} beats ${playerSelection}.`;
-const itIsTie = `Its a tie! Try again.`;
+// let computerSelection = getComputerChoice();
 
 function getComputerChoice() {
     const handSignals = ["Rock", "Paper", "Scissors"];
@@ -71,7 +66,8 @@ function game(numOfRounds) {
 
     for (let i = 0; i < numOfRounds; i++) {
 
-        playerSelection = capitalizeFirstLetter(playerSelection);
+        playerSelection = getPlayerChoice();
+        // playerSelection = capitalizeFirstLetter(playerSelection);
         // console.log(playerSelection);
         computerSelection = getComputerChoice();
         
@@ -98,6 +94,15 @@ function game(numOfRounds) {
     } else {
         console.log(`You lost and computer won! The score is ${playerScore} : ${computerScore}`);
     }
+}
+
+function getPlayerChoice() {
+
+    let playerSelection = prompt("Type your choice: Rock, Paper, Scissors");
+    playerSelection = capitalizeFirstLetter(playerSelection);
+    const handSignals = ["Rock", "Paper", "Scissors"];
+
+    return playerSelection;
 }
 
 console.log(game(5));
