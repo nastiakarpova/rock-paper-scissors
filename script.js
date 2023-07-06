@@ -1,7 +1,11 @@
 console.log("Hello there! Welcome to a little game..");
 
-const playerSelection = "scISsors";
+let playerSelection = "scISsors";
 let computerSelection = getComputerChoice();
+
+const youWin = `You win! ${playerSelection} beats ${computerSelection}.`;
+const youLose = `You lose! ${computerSelection} beats ${playerSelection}.`;
+const itIsTie = `Its a tie! Try again.`;
 
 function getComputerChoice() {
     const handSignals = ["Rock", "Paper", "Scissors"];
@@ -11,33 +15,48 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
 
-    const playerSelectionCap = capitalizeFirstLetter(playerSelection);
-    // console.log(playerSelectionCap);
+    // const playerSelectionCap = capitalizeFirstLetter(playerSelection);
+    // // console.log(playerSelectionCap);
 
-    const youWin = `You win! ${playerSelectionCap} beats ${computerSelection}.`;
-    const youLose = `You lose! ${computerSelection} beats ${playerSelectionCap}.`;
-    const itIsTie = `Its a tie! Try again.`;
+    // const youWin = `You win! ${playerSelectionCap} beats ${computerSelection}.`;
+    // const youLose = `You lose! ${computerSelection} beats ${playerSelectionCap}.`;
+    // const itIsTie = `Its a tie! Try again.`;
 
 
-    if (playerSelectionCap === computerSelection) {
+    if (playerSelection === computerSelection) {
         return 0;
     }
 
-    else if (playerSelectionCap === "Paper" && computerSelection === "Rock") {
+    else if (playerSelection === "Paper" && computerSelection === "Rock") {
         return 1;
     }
 
-    else if (playerSelectionCap === "Rock" && computerSelection === "Scissors") {
+    else if (playerSelection === "Rock" && computerSelection === "Scissors") {
         return 1;
     }
 
-    else if (playerSelectionCap === "Scissors" && computerSelection === "Paper") {
+    else if (playerSelection === "Scissors" && computerSelection === "Paper") {
         return 1;
     }
 
     else {
         return 2;
     }
+
+}
+
+function writeScore (playerSelection, computerSelection, score) {
+
+    if (score === 1) {
+        return `You win! ${playerSelection} beats ${computerSelection}.`;
+    } else if (score === 2) {
+        return `You lose! ${computerSelection} beats ${playerSelection}.`;
+    } else if (score === 0) {
+        return `It's a tie! Try again.`;
+    }
+    // const youWin = `You win! ${playerSelection} beats ${computerSelection}.`;
+    // const youLose = `You lose! ${computerSelection} beats ${playerSelection}.`;
+    // const itIsTie = `It's a tie! Try again.`;
 
 }
 
@@ -51,21 +70,27 @@ function game(numOfRounds) {
     let computerScore = 0;
 
     for (let i = 0; i < numOfRounds; i++) {
+
+        playerSelection = capitalizeFirstLetter(playerSelection);
+        // console.log(playerSelection);
         computerSelection = getComputerChoice();
+        
         let score = playRound(playerSelection, computerSelection);
-        // console.log(score);
+
         if (score === 0) {
-            console.log("tie");
+            // console.log("tie");
             numOfRounds += 1;
         } else if (score === 1) {
-            playerScore += 1
-            console.log("win");
+            playerScore += 1;
+            // console.log("win");
             console.log(playerScore);
         } else {
             computerScore += 1;
-            console.log("lose");
+            // console.log("lose");
             console.log(computerScore);
         }
+        console.log(writeScore(playerSelection, computerSelection, score));
+
     }
         
     if (playerScore > computerScore) {
