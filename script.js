@@ -1,22 +1,15 @@
 console.log("Hello there! Welcome to a little game..");
 
-// let computerSelection = getComputerChoice();
+const handSignals = ["Rock", "Paper", "Scissors"];
 
 function getComputerChoice() {
-    const handSignals = ["Rock", "Paper", "Scissors"];
+
     const chosenSignal = Math.floor(Math.random() * 3);
     return handSignals[chosenSignal];
+
 }
 
 function playRound(playerSelection, computerSelection) {
-
-    // const playerSelectionCap = capitalizeFirstLetter(playerSelection);
-    // // console.log(playerSelectionCap);
-
-    // const youWin = `You win! ${playerSelectionCap} beats ${computerSelection}.`;
-    // const youLose = `You lose! ${computerSelection} beats ${playerSelectionCap}.`;
-    // const itIsTie = `Its a tie! Try again.`;
-
 
     if (playerSelection === computerSelection) {
         return 0;
@@ -49,14 +42,13 @@ function writeScore (playerSelection, computerSelection, score) {
     } else if (score === 0) {
         return `It's a tie! Try again.`;
     }
-    // const youWin = `You win! ${playerSelection} beats ${computerSelection}.`;
-    // const youLose = `You lose! ${computerSelection} beats ${playerSelection}.`;
-    // const itIsTie = `It's a tie! Try again.`;
 
 }
 
 function capitalizeFirstLetter(word) {
+
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+
 }
 
 function game(numOfRounds) {
@@ -66,25 +58,24 @@ function game(numOfRounds) {
 
     for (let i = 0; i < numOfRounds; i++) {
 
-        playerSelection = getPlayerChoice();
-        // playerSelection = capitalizeFirstLetter(playerSelection);
-        // console.log(playerSelection);
-        computerSelection = getComputerChoice();
-        
+        let playerSelection = getPlayerChoice();
+
+        if (!(handSignals.includes(playerSelection))) {
+            alert ("You must choose from the three options. Please, try again.");
+            playerSelection = getPlayerChoice();
+        }
+
+        let computerSelection = getComputerChoice();
         let score = playRound(playerSelection, computerSelection);
 
         if (score === 0) {
-            // console.log("tie");
             numOfRounds += 1;
         } else if (score === 1) {
             playerScore += 1;
-            // console.log("win");
-            console.log(playerScore);
         } else {
             computerScore += 1;
-            // console.log("lose");
-            console.log(computerScore);
         }
+        console.log(playerScore, " : ", computerScore);
         console.log(writeScore(playerSelection, computerSelection, score));
 
     }
@@ -94,21 +85,23 @@ function game(numOfRounds) {
     } else {
         console.log(`You lost and computer won! The score is ${playerScore} : ${computerScore}`);
     }
+
 }
 
 function getPlayerChoice() {
 
     let playerSelection = prompt("Type your choice: Rock, Paper, Scissors");
     playerSelection = capitalizeFirstLetter(playerSelection);
-    const handSignals = ["Rock", "Paper", "Scissors"];
 
     return playerSelection;
+
 }
 
 console.log(game(5));
 
-// console.log(playRoundAlternative(playerSelection, computerSelection));
 
+
+// console.log(playRoundAlternative(playerSelection, computerSelection));
 
 
 // function playRoundAlternative(playerSelection, computerSelection) {
