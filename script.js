@@ -1,7 +1,7 @@
 console.log("Hello there! Welcome to a little game..");
 
 const playerSelection = "scISsors";
-const computerSelection = getComputerChoice();
+let computerSelection = getComputerChoice();
 
 function getComputerChoice() {
     const handSignals = ["Rock", "Paper", "Scissors"];
@@ -12,7 +12,7 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
 
     const playerSelectionCap = capitalizeFirstLetter(playerSelection);
-    console.log(playerSelectionCap);
+    // console.log(playerSelectionCap);
 
     const youWin = `You win! ${playerSelectionCap} beats ${computerSelection}.`;
     const youLose = `You lose! ${computerSelection} beats ${playerSelectionCap}.`;
@@ -20,23 +20,23 @@ function playRound(playerSelection, computerSelection) {
 
 
     if (playerSelectionCap === computerSelection) {
-        return itIsTie;
+        return 0;
     }
 
     else if (playerSelectionCap === "Paper" && computerSelection === "Rock") {
-        return youWin;
+        return 1;
     }
 
     else if (playerSelectionCap === "Rock" && computerSelection === "Scissors") {
-        return youWin;
+        return 1;
     }
 
     else if (playerSelectionCap === "Scissors" && computerSelection === "Paper") {
-        return youWin;
+        return 1;
     }
 
     else {
-        return youLose;
+        return 2;
     }
 
 }
@@ -45,9 +45,37 @@ function capitalizeFirstLetter(word) {
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 }
 
+function game(numOfRounds) {
 
-console.log(computerSelection);
-console.log(playRound(playerSelection, computerSelection));
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for (let i = 0; i < numOfRounds; i++) {
+        computerSelection = getComputerChoice();
+        let score = playRound(playerSelection, computerSelection);
+        // console.log(score);
+        if (score === 0) {
+            console.log("tie");
+            numOfRounds += 1;
+        } else if (score === 1) {
+            playerScore += 1
+            console.log("win");
+            console.log(playerScore);
+        } else {
+            computerScore += 1;
+            console.log("lose");
+            console.log(computerScore);
+        }
+    }
+        
+    if (playerScore > computerScore) {
+        console.log(`You won the whole game! The score is ${playerScore} : ${computerScore}`);
+    } else {
+        console.log(`You lost and computer won! The score is ${playerScore} : ${computerScore}`);
+    }
+}
+
+console.log(game(5));
 
 // console.log(playRoundAlternative(playerSelection, computerSelection));
 
