@@ -1,6 +1,6 @@
 console.log("Hello there! Welcome to a little game..");
 
-const playerSelection = "Rock";
+const playerSelection = "scISsors";
 const computerSelection = getComputerChoice();
 
 function getComputerChoice() {
@@ -11,24 +11,28 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
 
-    const youWin = `You win! ${playerSelection} beats ${computerSelection}.`;
-    const youLose = `You lose! ${computerSelection} beats ${playerSelection}.`;
+    const playerSelectionCap = playerSelection.charAt(0).toUpperCase() 
+    + playerSelection.slice(1).toLowerCase();
+    console.log(playerSelectionCap);
+
+    const youWin = `You win! ${playerSelectionCap} beats ${computerSelection}.`;
+    const youLose = `You lose! ${computerSelection} beats ${playerSelectionCap}.`;
     const itIsTie = `Its a tie! Try again.`;
 
 
-    if (playerSelection === computerSelection) {
+    if (playerSelectionCap === computerSelection) {
         return itIsTie;
     }
 
-    else if (playerSelection === "paper" && computerSelection === "rock") {
+    else if (playerSelectionCap === "Paper" && computerSelection === "Rock") {
         return youWin;
     }
 
-    else if (playerSelection === "rock" && computerSelection === "scissors") {
+    else if (playerSelectionCap === "Rock" && computerSelection === "Scissors") {
         return youWin;
     }
 
-    else if (playerSelection === "scissors" && computerSelection === "paper") {
+    else if (playerSelectionCap === "Scissors" && computerSelection === "Paper") {
         return youWin;
     }
 
@@ -37,6 +41,7 @@ function playRound(playerSelection, computerSelection) {
     }
 
 }
+
 
 console.log(computerSelection);
 console.log(playRound(playerSelection, computerSelection));
