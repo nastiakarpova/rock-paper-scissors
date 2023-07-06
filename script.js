@@ -4,13 +4,26 @@ const handSignals = ["Rock", "Paper", "Scissors"];
 
 function getComputerChoice() {
 
+    // Choose a random option from 3 options
     const chosenSignal = Math.floor(Math.random() * 3);
     return handSignals[chosenSignal];
 
 }
 
+function getPlayerChoice() {
+
+    // Ask for a selection and transform the text, so it's uniformed
+    let playerSelection = prompt("Type your choice: Rock, Paper, Scissors");
+    playerSelection = capitalizeFirstLetter(playerSelection);
+
+    return playerSelection;
+
+}
+
 function playRound(playerSelection, computerSelection) {
 
+    // Compare hands of player and computer and return 0 - for tie,
+    // 1 - for player's win, 2 - for player's lose
     if (playerSelection === computerSelection) {
         return 0;
     }
@@ -35,6 +48,7 @@ function playRound(playerSelection, computerSelection) {
 
 function writeScore (playerSelection, computerSelection, score) {
 
+    // Print the game outcome after each round
     if (score === 1) {
         return `You win! ${playerSelection} beats ${computerSelection}.`;
     } else if (score === 2) {
@@ -47,6 +61,7 @@ function writeScore (playerSelection, computerSelection, score) {
 
 function capitalizeFirstLetter(word) {
 
+    // Giver the player's input, transform the text (i.e. Rock)
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 
 }
@@ -60,6 +75,8 @@ function game(numOfRounds) {
 
         let playerSelection = getPlayerChoice();
 
+        // If the player inputs non-permitable text, they will be asked to 
+        // type their choice again
         if (!(handSignals.includes(playerSelection))) {
             alert ("You must choose from the three options. Please, try again.");
             playerSelection = getPlayerChoice();
@@ -68,6 +85,7 @@ function game(numOfRounds) {
         let computerSelection = getComputerChoice();
         let score = playRound(playerSelection, computerSelection);
 
+        // If it's a tie, then it doesn't count towards number of rounds played
         if (score === 0) {
             numOfRounds += 1;
         } else if (score === 1) {
@@ -79,7 +97,8 @@ function game(numOfRounds) {
         console.log(writeScore(playerSelection, computerSelection, score));
 
     }
-        
+
+    // When the game is finished, the results are compared for the final score
     if (playerScore > computerScore) {
         console.log(`You won the whole game! The score is ${playerScore} : ${computerScore}`);
     } else {
@@ -88,16 +107,7 @@ function game(numOfRounds) {
 
 }
 
-function getPlayerChoice() {
-
-    let playerSelection = prompt("Type your choice: Rock, Paper, Scissors");
-    playerSelection = capitalizeFirstLetter(playerSelection);
-
-    return playerSelection;
-
-}
-
-console.log(game(5));
+console.log(game(3));
 
 
 
