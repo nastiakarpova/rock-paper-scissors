@@ -11,8 +11,7 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
 
-    const playerSelectionCap = playerSelection.charAt(0).toUpperCase() 
-    + playerSelection.slice(1).toLowerCase();
+    const playerSelectionCap = capitalizeFirstLetter(playerSelection);
     console.log(playerSelectionCap);
 
     const youWin = `You win! ${playerSelectionCap} beats ${computerSelection}.`;
@@ -40,6 +39,10 @@ function playRound(playerSelection, computerSelection) {
         return youLose;
     }
 
+}
+
+function capitalizeFirstLetter(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 }
 
 
